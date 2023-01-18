@@ -1,7 +1,11 @@
 import React from 'react'
+import {useState} from "react";
 
 
 const Navbar = () => {
+
+  const [isLoggedIn, setIsLoggedIn] = useState()
+
     return (
       <div className="nav">
         <a href="/">
@@ -11,13 +15,16 @@ const Navbar = () => {
             alt="logo"
           ></img>
         </a>
-        <h1>FOOD 24/7</h1>
+        <h1></h1>
         <ul className="nav-items">
           <li>Home</li>
           <li>About Us</li>
           <li>Contact</li>
           <li>Cart</li>
         </ul>
+       
+        {isLoggedIn? <button onClick={()=>(setIsLoggedIn(false))}>Logout</button>: <button onClick={()=>(setIsLoggedIn(true))}>Login</button>}
+       
       </div>
     );
   };
