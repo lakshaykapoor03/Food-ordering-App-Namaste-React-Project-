@@ -85,3 +85,7 @@ i{
   margin: 30px;
   margin-left: 40px;
 }
+
+.restaurant-info{
+  display: flex;
+}

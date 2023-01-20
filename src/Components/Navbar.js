@@ -1,5 +1,6 @@
 import React from 'react'
 import {useState} from "react";
+import { Link } from 'react-router-dom';
 
 
 const Navbar = () => {
@@ -17,10 +18,10 @@ const Navbar = () => {
         </a>
         <h1></h1>
         <ul className="nav-items">
-          <li>Home</li>
-          <li>About Us</li>
-          <li>Contact</li>
-          <li>Cart</li>
+        <Link to="/"><li>Home</li></Link> 
+         <Link to="/about"><li>About Us</li></Link> 
+         <Link to="/contact"><li>Contact</li></Link> 
+         <Link to="/cart"><li>Cart</li></Link> 
         </ul>
        
         {isLoggedIn? <button onClick={()=>(setIsLoggedIn(false))}>Logout</button>: <button onClick={()=>(setIsLoggedIn(true))}>Login</button>}
