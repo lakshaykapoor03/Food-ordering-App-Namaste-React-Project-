@@ -3,25 +3,30 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { img_link } from "../Config";
 import Shimmer from "./Shimmer";
+import useRestaurant from "../utils/useRestaurant";
 
 const RestaurantMenu = () => {
   const params = useParams();
     const { id } = params;
-  const [restaurant, setRestaurant]= useState(null)
+    const restaurant= useRestaurant(id)
 
-  const getRestaurantInfo = async () => {
-    const data = await fetch(
-    `https://www.swiggy.com/dapi/menu/v4/full?lat=28.3895327&lng=77.2857697&menuId=${id}`
-    );
-    const json = await data.json();
-    console.log(json);
-    setRestaurant(json.data)
-  };
-  useEffect(() => {
-    getRestaurantInfo();
-  }, []);
+    // commented here and created useRestaurant Hook
+    
+  // const [restaurant, setRestaurant]= useState(null)
 
-  if (! restaurant){
+  // const getRestaurantInfo = async () => {
+  //   const data = await fetch(
+  //   `https://www.swiggy.com/dapi/menu/v4/full?lat=28.3895327&lng=77.2857697&menuId=${id}`
+  //   );
+  //   const json = await data.json();
+  //   console.log(json);
+  //   setRestaurant(json.data)
+  // };
+  // useEffect(() => {
+  //   getRestaurantInfo();
+  // }, []);
+
+  if (!restaurant){
     return(
         <Shimmer/>
     )

@@ -4,6 +4,7 @@ import { restaurantsList } from "../Config";
 import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
+import useOnline from "../utils/useOnline"
 
 const filterRestaurants = (restaurantList, searchText) => {
   const filterData = restaurantList.filter((r) =>
@@ -24,7 +25,7 @@ const Container = () => {
 
   useEffect(() => {
     getRestaurants();
-  }, []);
+  },[]);
 
   const getRestaurants = async () => {
     const data = await fetch(
@@ -35,6 +36,14 @@ const Container = () => {
     setFilteredRestaurants(json?.data?.cards[2]?.data?.data?.cards);
     setAllRestaurants(json?.data?.cards[2]?.data?.data?.cards);
   };
+
+  const online=useOnline();
+
+  if(!online){
+    return <h1> Offline, please check your internet connection!!</h1>
+  }
+
+  if(!allRestaurants) return null;
 
   return allRestaurants?.length === 0 ? (
     <div className="shimmer-container">

@@ -11,6 +11,9 @@ import Error from "./Components/Error";
 import Contact from "./Components/Contact";
 import Cart from "./Components/Cart";
 import RestaurantMenu from "./Components/RestaurantMenu";
+import ProfileFunctionalComponent from "./Components/Profile";
+import Profile from "./Components/ProfileClass";
+import Instamart from "./Components/Instamart";
 import { Outlet } from "react-router-dom";
 function App() {
   return (
@@ -37,7 +40,14 @@ children:[
   },
   {
     path:"/contact",
-    element:<Contact/>
+    element:<Contact/>,
+    children:[
+      {
+        path:"profile",
+        element:[<Profile name={"Lakshay class"}/>,<ProfileFunctionalComponent name={"Lakshay"}/>]
+      },
+     
+    ]
   },
   {
     path:"/cart",
@@ -46,13 +56,12 @@ children:[
   {
     path:"/restaurant/:id",
     element:<RestaurantMenu/>
+  },
+  {
+    path:"/instamart",
+    element:<Instamart/>
   }
 ] },
-{
-  path:"/restaurant/:id",
-  element:<RestaurantMenu/>
-}
-
 ])
  
 

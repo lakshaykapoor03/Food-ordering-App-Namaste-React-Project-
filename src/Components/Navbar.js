@@ -1,11 +1,14 @@
 import React from 'react'
 import {useState} from "react";
 import { Link } from 'react-router-dom';
+import useOnline from '../utils/useOnline';
+import useLoggedIn from '../utils/useLoggedIn';
 
 
 const Navbar = () => {
 
   const [isLoggedIn, setIsLoggedIn] = useState()
+  const isOnline = useOnline()
 
     return (
       <div className="nav">
@@ -22,7 +25,12 @@ const Navbar = () => {
          <Link to="/about"><li>About Us</li></Link> 
          <Link to="/contact"><li>Contact</li></Link> 
          <Link to="/cart"><li>Cart</li></Link> 
+         <Link to="/instamart"><li>Instamart</li></Link> 
+         {isOnline?"Online":"Offline"}
         </ul>
+        
+
+
        
         {isLoggedIn? <button onClick={()=>(setIsLoggedIn(false))}>Logout</button>: <button onClick={()=>(setIsLoggedIn(true))}>Login</button>}
        
