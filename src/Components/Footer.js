@@ -2,7 +2,7 @@ import React from 'react'
 
 const Footer = () => {
     return (
-      <div className="footer">
+      <div className="flex gap-5 justify-around flex-wrap bg-slate-300">
         <div>
           <h2>Company</h2>
           <ul>

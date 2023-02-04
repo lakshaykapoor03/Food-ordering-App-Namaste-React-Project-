@@ -32,7 +32,7 @@ const RestaurantMenu = () => {
     )
   }
   return (
-    <div className="restaurant-info">
+    <div className="flex justify-around">
         <div>
       <h1>Restaurant id:{id}</h1>
       <img  width={"200px"} src={`${img_link}/${restaurant.cloudinaryImageId}`}/>

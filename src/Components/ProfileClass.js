@@ -1,4 +1,5 @@
 import React from "react";
+import UserContext from "../utils/UserContext";
 
 class Profile extends React.Component {
   constructor() {
@@ -11,7 +12,7 @@ class Profile extends React.Component {
 
     this.state={
       userInfo:{
-  name:"dummy aname",
+  name:"dummy Name",
   location:"location"
       }
     }
@@ -50,6 +51,9 @@ console.log("component didUpdate")
         <img src={this.state.userInfo.avatar_url} alt="" />
         <h3>{this.state.userInfo.name}</h3>
         <h3>{this.state.userInfo.bio}</h3>
+        <UserContext.Consumer>
+          {({user})=>(<h1>{user.name} & {user.email}</h1>)}
+        </UserContext.Consumer>
       </>
     );
   }
