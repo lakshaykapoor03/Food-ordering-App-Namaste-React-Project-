@@ -17,15 +17,16 @@ import Profile from "./Components/ProfileClass";
 import Instamart from "./Components/Instamart";
 import { Outlet } from "react-router-dom";
 import UserContext from "./utils/UserContext";
+import { Provider } from "react-redux";
+import store from "./utils/store";
 
 function App() {
   const [user, setUser] = useState({
-    name: "hvhv",
-    email: "gvgvhhvh",
+    name: "",
+    email: "",
   });
   return (
-    <div className="App">
-        <Navbar />
+    <Provider store={store}>
 
       <UserContext.Provider
         value={{
@@ -33,10 +34,11 @@ function App() {
         setUser:setUser}
         }
       >
+        <Navbar />
         <Outlet />
         <Footer />
       </UserContext.Provider>
-    </div>
+    </Provider>
   );
 }
 

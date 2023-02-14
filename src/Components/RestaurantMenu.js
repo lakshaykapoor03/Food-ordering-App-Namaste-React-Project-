@@ -4,11 +4,19 @@ import { useEffect, useState } from "react";
 import { img_link } from "../Config";
 import Shimmer from "./Shimmer";
 import useRestaurant from "../utils/useRestaurant";
+import {addItem} from "../utils/cartSlice";
+import { useDispatch } from "react-redux";
 
 const RestaurantMenu = () => {
   const params = useParams();
     const { id } = params;
     const restaurant= useRestaurant(id)
+    const dispatch= useDispatch()
+
+
+    const handleAddItem= (item)=>(
+      dispatch(addItem(item))
+    )
 
     // commented here and created useRestaurant Hook
     
@@ -45,7 +53,10 @@ const RestaurantMenu = () => {
         <h1>Menu</h1>
         <ul>
             {Object.values(restaurant?.menu?.items).map((item)=>(
+                <div className="flex justify-between mt-2">
                 <li key={item.id}>{item.name}</li>
+                <button onClick={()=>handleAddItem(item)} className="p-1  bg-green-300 rounded hover:bg-green-500">Add item</button>
+                </div>
             ))}
         </ul>
 

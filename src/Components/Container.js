@@ -34,7 +34,7 @@ const {user, setUser}= useContext(UserContext)
       "https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.3895327&lng=77.2857697&page_type=DESKTOP_WEB_LISTING"
     );
     const json = await data.json();
-    // console.log(json.data.cards[2].data.data.cards);
+     console.log(json.data.cards[2].data.data.cards);
     setFilteredRestaurants(json?.data?.cards[2]?.data?.data?.cards);
     setAllRestaurants(json?.data?.cards[2]?.data?.data?.cards);
   };
