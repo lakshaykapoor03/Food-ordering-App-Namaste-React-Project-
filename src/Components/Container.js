@@ -55,15 +55,15 @@ const {user, setUser}= useContext(UserContext)
   ) : (
     <div>
       <div>
-        <div className="flex justify-center rounded bg-slate-300  ">
+        <div className="flex justify-center p-2 bg-[#272b3f] ">
           <input
             type="text"
-            className="rounded  border-2 border-gray-200"
+            className=" border-2 border-gray-200 outline-none p-2 w-3/4"
             placeholder="Search your favourite food..."
             value={searchText}
             onChange={(e) => setSearchText(e.target.value)}
           ></input>
-          <button
+          <button className="p-3 bg-white"
             onClick={() => {
               const data = filterRestaurants(allRestaurants, searchText);
               setFilteredRestaurants(data);
@@ -71,7 +71,7 @@ const {user, setUser}= useContext(UserContext)
             }}
           >
             {" "}
-            <i className="fa-solid fa-magnifying-glass" />
+            <i className="fa-solid fa-magnifying-glass bg-white" />
           </button>
         </div>
         <div>

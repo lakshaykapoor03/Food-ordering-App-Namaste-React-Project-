@@ -22,7 +22,7 @@ const Cart = () => {
     
     
 
-<div className="flex gap-2 justify-evenly flex-wrap">
+<div className="flex flex-col gap-2 justify-evenly flex-wrap">
 
     {cartItems.map((item,idx) => (
     <FoodItem key={idx} {...item}/>)

@@ -40,26 +40,35 @@ const RestaurantMenu = () => {
     )
   }
   return (
-    <div className="flex justify-around">
-        <div>
-      <h1>Restaurant id:{id}</h1>
-      <img  width={"200px"} src={`${img_link}/${restaurant.cloudinaryImageId}`}/>
-      <h2>Restaurant Name:{restaurant.name}</h2>
+    <div className="">
+        <div className="flex justify-around">
+      <img  width={"200px"} height={"200px"} src={`${img_link}/${restaurant.cloudinaryImageId}`}/>
+      <div><h2 className="font-bold text-3xl">Restaurant Name:{restaurant.name}</h2>
       <h2>Area:{restaurant.area}</h2>
       <h2>{restaurant.costForTwoMsg}</h2>
+      </div>
       {/* <h2>{restaurant.cuisines.join(",")}</h2> */}
     </div>
     <div className="menu">
-        <h1>Menu</h1>
+        <h1 className="font-semibold text-4xl m-8">Menu</h1>
         <ul>
             {Object.values(restaurant?.menu?.items).map((item)=>(
-                <div className="flex justify-between mt-2">
-                <li key={item.id}>{item.name}</li>
-                <button onClick={()=>handleAddItem(item)} className="p-1  bg-green-300 rounded hover:bg-green-500">Add item</button>
+                <div className="grid grid-cols-2 gap-10 ml-12">
+               <div className="flex flex-col"> <li className="font-bold" key={item.id}>{item.name}</li>
+                {/* <li className="" >{item.price}</li> */}
+                <li className="text-sm font-medium">{item.attributes.portionSize}</li>
+                <li className="text-sm text-gray-400">{item.description}</li>
                 </div>
+                <div className="mt-10">
+                <li ><img width="20%" src={`${img_link}${item.cloudinaryImageId}`}/></li>
+                <button onClick={()=>handleAddItem(item)} className="p-1 text-green-700 font-medium text-sm mx-8 text-center bg-white shadow-lg rounded hover:bg-gray-200">ADD +</button>
+                </div>
+                </div>
+                
             ))}
+            
         </ul>
-
+        
     </div>
     </div>
   );

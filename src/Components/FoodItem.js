@@ -1,25 +1,33 @@
 import React from "react";
-import {img_link} from "../Config"
+import { img_link } from "../Config";
+import { useState } from "react";
 
+const FoodItem = ({ name, cloudinaryImageId }) => {
+  let [itemNumber, setItemNumber] = useState(0);
 
-
-const FoodItem = ({
-    name,
-    cloudinaryImageId,
-  }) => {
-
-    return (
-      <div className="flex flex-col w-52 p-2 overflow-clip cursor-pointer bg-slate-100">
-        <img
-          className="card-img"
-          src={`${img_link}${cloudinaryImageId}`}
-          alt=""
-        />
-        <span>{name}</span>
-        
-    
-      </div>
-    );
+  const increaseItemNumber = () => {
+    return setItemNumber(++itemNumber);
   };
 
-  export default FoodItem;
+  const decreaseItemNumber = () => {
+    return setItemNumber(--itemNumber);
+  };
+
+  return (
+    <div className="flex justify-between items-center w-3/4 p-2 overflow-clip cursor-pointer shadow-lg rounded-xl">
+      <img
+        className="card-img w-20 h-16"
+        src={`${img_link}${cloudinaryImageId}`}
+        alt=""
+      />
+      <span className="text-sm">{name}</span>
+      <span className="flex gap-1 items-center shadow-lg rounded-md">
+        <button  className="text-red-600 font-bold w-6 text-center rounded-[50%]" onClick={() => decreaseItemNumber()}> - </button>
+        <span className="text-xs font-medium">{itemNumber}</span>
+        <button className="text-green-600 font-bold w-6 text-center text-white rounded-[50%]" onClick={() => increaseItemNumber()}>+</button>
+      </span>
+    </div>
+  );
+};
+
+export default FoodItem;
