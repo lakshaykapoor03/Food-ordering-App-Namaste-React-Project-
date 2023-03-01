@@ -15,11 +15,12 @@ const FoodItem = ({ name, cloudinaryImageId }) => {
 
   return (
     <div className="flex justify-between items-center w-3/4 p-2 overflow-clip cursor-pointer shadow-lg rounded-xl">
-      <img
+      {cloudinaryImageId? <img
         className="card-img w-20 h-16"
         src={`${img_link}${cloudinaryImageId}`}
         alt=""
-      />
+      />:""}
+     
       <span className="text-sm">{name}</span>
       <span className="flex gap-1 items-center shadow-lg rounded-md">
         <button  className="text-red-600 font-bold w-6 text-center rounded-[50%]" onClick={() => decreaseItemNumber()}> - </button>
@@ -31,3 +32,6 @@ const FoodItem = ({ name, cloudinaryImageId }) => {
 };
 
 export default FoodItem;
+
+
+
