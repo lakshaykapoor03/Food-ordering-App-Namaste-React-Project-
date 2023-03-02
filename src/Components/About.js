@@ -1,14 +1,6 @@
 import React from 'react'
 import Profile from './ProfileClass';
 
-// function About() {
-//   return (
-//     <div>
-//         <h1>About us</h1>
-//         <p>This is namaste react live course.</p>
-//     </div>
-//   )
-// }
 
 class About extends React.Component {
 constructor(props) {

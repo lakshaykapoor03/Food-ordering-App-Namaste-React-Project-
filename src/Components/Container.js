@@ -95,13 +95,7 @@ const {user, setUser}= useContext(UserContext)
           </Link>
           ))
         )}
-        {/* <Card restaurant={restaurants[0].data}/>
-      <Card restaurant={restaurants[1].data}/>
-      <Card restaurant={restaurants[2].data}/>
-      <Card restaurant={restaurants[3].data}/>
-      <Card restaurant={restaurants[4].data}/>
-      <Card restaurant={restaurants[5].data}/>
-       */}
+  
       </div>
     </div>
   );
