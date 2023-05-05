@@ -2,7 +2,7 @@ import React from "react";
 import { img_link } from "../Config";
 import { useState } from "react";
 
-const FoodItem = ({ name, cloudinaryImageId }) => {
+const FoodItem = ({ name, imageId }) => {
   let [itemNumber, setItemNumber] = useState(0);
 
   const increaseItemNumber = () => {
@@ -14,10 +14,10 @@ const FoodItem = ({ name, cloudinaryImageId }) => {
   };
 
   return (
-    <div className="flex justify-between items-center w-3/4 p-2 overflow-clip cursor-pointer shadow-lg rounded-xl">
-      {cloudinaryImageId? <img
+    <div className="flex justify-between items-center w-96 mt-8 p-2 overflow-clip cursor-pointer shadow-lg rounded-xl">
+      {imageId? <img
         className="card-img w-20 h-16"
-        src={`${img_link}${cloudinaryImageId}`}
+        src={`${img_link}${imageId}`}
         alt=""
       />:""}
      

@@ -12,8 +12,11 @@ import { clearCart } from "../utils/cartSlice";
 const RestaurantMenu = () => {
   const params = useParams();
   const { id } = params;
-  const restaurant = useRestaurant(id);
+  const restaurantItems = useRestaurant(id);
+  console.log(restaurantItems[0]?.card.info)
   const cartItems = useSelector((store) => store.cart.items);
+
+  console.log(cartItems)
 
   const dispatch = useDispatch();
 
@@ -39,57 +42,57 @@ const RestaurantMenu = () => {
   //   getRestaurantInfo();
   // }, []);
 
-  if (!restaurant) {
+  if (!restaurantItems) {
     return <Shimmer />;
   }
   return (
     <div className="">
       <div className="flex justify-around">
-        <img
+        {/* <img
           width={"200px"}
           height={"200px"}
-          src={`${img_link}/${restaurant.cloudinaryImageId}`}
+          src={`${img_link}/${restaurantItems.cloudinaryImageId}`}
         />
         <div>
           <h2 className="font-bold text-3xl">
-            Restaurant Name:{restaurant.name}
+            Restaurant Name:{restaurantItems.name}
           </h2>
-          <h2>Area:{restaurant.area}</h2>
-          <h2>{restaurant.costForTwoMsg}</h2>
-        </div>
+          <h2>Area:{restaurantItems.area}</h2>
+          <h2>{restaurantItems.costForTwoMsg}</h2>
+        </div> */}
         {/* <h2>{restaurant.cuisines.join(",")}</h2> */}
       </div>
       <div className="grid grid-cols-3 gap-4">
         <div className="col-span-2 ">
           <h1 className="font-semibold text-4xl m-8">Menu</h1>
           <ul>
-            {Object.values(restaurant?.menu?.items).map((item) => (
-              <div className="grid grid-cols-2 gap-10 ml-12">
+            {restaurantItems.map((item) => (
+              <div key={item?.card?.info?.id} className="grid grid-cols-2 gap-10 ml-12">
                 <div className="flex flex-col">
                   {" "}
                   <li className="font-bold" key={item.id}>
-                    {item.name}
+                    {item?.card?.info?.name}
                   </li>
-                  {/* <li className="" >{item.price}</li> */}
-                  <li className="text-sm font-medium">
-                    {item.attributes.portionSize}
-                  </li>
-                  <li className="text-sm text-gray-400">{item.description}</li>
+                   <li className="" >Rs.{(item?.card?.info?.price)/100}</li>
+                 <li className="text-sm font-medium">
+                    {item?.card?.info?.itemAttribute.vegClassifier}
+            </li>
+                  <li className="text-sm text-gray-400">{item?.card?.info?.description}</li> 
                 </div>
                 <div className="mt-10">
                   <li>
-                    {item.cloudinaryImageId ? (
+                    {item?.card?.info?.imageId ? (
                       <img
                         width="15%"
                         className="rounded"
-                        src={`${img_link}${item.cloudinaryImageId}`}
+                        src={`${img_link}${item?.card?.info?.imageId}`}
                       />
                     ) : (
                       ""
                     )}
                   </li>
                   <button
-                    onClick={() => handleAddItem(item)}
+                    onClick={() => handleAddItem(item?.card?.info)}
                     className="p-1 text-green-700 font-medium text-sm ml-10 text-center bg-white shadow-lg rounded hover:bg-gray-200"
                   >
                     ADD +
