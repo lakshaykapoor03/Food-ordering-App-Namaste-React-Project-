@@ -9,7 +9,7 @@ import { useSelector } from 'react-redux';
 
 const Navbar = () => {
 
-  const [isLoggedIn, setIsLoggedIn] = useState()
+  const [isLoggedIn, setIsLoggedIn] = useState(true)
   const isOnline = useOnline()
 const {user}= useContext(UserContext)
 const cartItems= useSelector((store)=>store.cart.items)
