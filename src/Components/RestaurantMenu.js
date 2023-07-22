@@ -12,6 +12,7 @@ import { clearCart } from "../utils/cartSlice";
 const RestaurantMenu = () => {
   const params = useParams();
   const { id } = params;
+  console.log(id)
   const restaurantItems = useRestaurant(id);
   console.log(restaurantItems[0]?.card.info)
   const cartItems = useSelector((store) => store.cart.items);

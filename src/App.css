@@ -1,8 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-/* 
-.App {
+
+/* .App {
 }
 
 .logo-img {
@@ -72,6 +72,13 @@ i{
   cursor: pointer;
 }
 
+
+.restaurant-info{
+  display: flex
+  ;
+} */
+
+
 .shimmer{
   width: 200px;
   height: 200px;
@@ -89,8 +96,3 @@ i{
   margin: 30px;
   margin-left: 40px;
 }
-
-.restaurant-info{
-  display: flex
-  ;
-} */

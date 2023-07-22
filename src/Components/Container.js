@@ -8,12 +8,6 @@ import useOnline from "../utils/useOnline"
 import UserContext from "../utils/UserContext";
 
 
-const filterRestaurants = (restaurantList, searchText) => {
-  const filterData = restaurantList.filter((r) =>
-    r?.data?.name?.toLowerCase()?.includes(searchText)
-  );
-  return filterData;
-};
 
 const Container = () => {
   const [searchText, setSearchText] = useState("");
@@ -38,6 +32,14 @@ const {user, setUser}= useContext(UserContext)
     setFilteredRestaurants(json?.data?.cards[2]?.data?.data?.cards);
     setAllRestaurants(json?.data?.cards[2]?.data?.data?.cards);
   };
+
+  
+const filterRestaurants = (restaurantList, searchText) => {
+  const filterData = restaurantList.filter((r) =>
+    r?.data?.name?.toLowerCase()?.includes(searchText)
+  );
+  return filterData;
+};
 
   const online=useOnline();
 
