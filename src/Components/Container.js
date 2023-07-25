@@ -1,5 +1,5 @@
 import React from "react";
-import Card from "./Card";
+import Card,{withPromotedLabel} from "./Card";
 import { restaurantsList } from "../Config";
 import { useState, useEffect, useContext } from "react";
 import Shimmer from "./Shimmer";
@@ -16,6 +16,7 @@ const Container = () => {
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
 const {user, setUser}= useContext(UserContext)
   //  console.log(restaurants)
+  const RestaurantCardPromoted = withPromotedLabel(Card)
   console.log("render");
   // console.log(restaurants);
 
@@ -93,7 +94,7 @@ const filterRestaurants = (restaurantList, searchText) => {
           <h1>Oops..No restaurant matched your results!!</h1>
         ) : (
           filteredRestaurants.map((restaurant, idx) => (
-          <Link to={`restaurant/${restaurant.data.id}`} key={restaurant.data.id}> <Card  {...restaurant.data} />
+          <Link to={`restaurant/${restaurant.data.id}`} key={restaurant.data.id}>{restaurant.data.promoted? <RestaurantCardPromoted {...restaurant.data}/>:<Card  {...restaurant.data} />} 
           </Link>
           ))
         )}

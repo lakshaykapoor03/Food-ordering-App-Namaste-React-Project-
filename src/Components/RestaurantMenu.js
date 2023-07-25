@@ -8,16 +8,18 @@ import { addItem } from "../utils/cartSlice";
 import { useDispatch, useSelector } from "react-redux";
 import FoodItem from "./FoodItem";
 import { clearCart } from "../utils/cartSlice";
+import TitleMenuItems from "./TitleMenuItems";
 
 const RestaurantMenu = () => {
   const params = useParams();
   const { id } = params;
-  console.log(id)
+  // console.log(id);
   const restaurantItems = useRestaurant(id);
-  console.log(restaurantItems[0]?.card.info)
+  console.log(restaurantItems)
+
   const cartItems = useSelector((store) => store.cart.items);
 
-  console.log(cartItems)
+  // console.log(cartItems);
 
   const dispatch = useDispatch();
 
@@ -27,21 +29,7 @@ const RestaurantMenu = () => {
     dispatch(clearCart());
   };
 
-  // commented here and created useRestaurant Hook
 
-  // const [restaurant, setRestaurant]= useState(null)
-
-  // const getRestaurantInfo = async () => {
-  //   const data = await fetch(
-  //   `https://www.swiggy.com/dapi/menu/v4/full?lat=28.3895327&lng=77.2857697&menuId=${id}`
-  //   );
-  //   const json = await data.json();
-  //   console.log(json);
-  //   setRestaurant(json.data)
-  // };
-  // useEffect(() => {
-  //   getRestaurantInfo();
-  // }, []);
 
   if (!restaurantItems) {
     return <Shimmer />;
@@ -63,45 +51,26 @@ const RestaurantMenu = () => {
         </div> */}
         {/* <h2>{restaurant.cuisines.join(",")}</h2> */}
       </div>
+      <h1 className="font-semibold text-4xl m-8">Menu</h1>
+
       <div className="grid grid-cols-3 gap-4">
         <div className="col-span-2 ">
-          <h1 className="font-semibold text-4xl m-8">Menu</h1>
-          <ul>
-            {restaurantItems.map((item) => (
-              <div key={item?.card?.info?.id} className="grid grid-cols-2 gap-10 ml-12">
-                <div className="flex flex-col">
-                  {" "}
-                  <li className="font-bold" key={item.id}>
-                    {item?.card?.info?.name}
-                  </li>
-                   <li className="" >Rs.{(item?.card?.info?.price)/100}</li>
-                 <li className="text-sm font-medium">
-                    {item?.card?.info?.itemAttribute.vegClassifier}
-            </li>
-                  <li className="text-sm text-gray-400">{item?.card?.info?.description}</li> 
-                </div>
-                <div className="mt-10">
-                  <li>
-                    {item?.card?.info?.imageId ? (
-                      <img
-                        width="15%"
-                        className="rounded"
-                        src={`${img_link}${item?.card?.info?.imageId}`}
-                      />
-                    ) : (
-                      ""
-                    )}
-                  </li>
-                  <button
-                    onClick={() => handleAddItem(item?.card?.info)}
-                    className="p-1 text-green-700 font-medium text-sm ml-10 text-center bg-white shadow-lg rounded hover:bg-gray-200"
-                  >
-                    ADD +
-                  </button>
-                </div>
-              </div>
-            ))}
-          </ul>
+          {" "}
+          {restaurantItems.map((item, idx) => (
+            <div key={idx}>
+              <h1>{item.card.card.title}</h1>
+              <ul>
+    
+                  <div key={idx} className="grid grid-cols-2 gap-10 ml-12">
+                
+                  <TitleMenuItems items={item.card.card.itemCards} />
+                  </div>
+               
+              </ul>
+            </div>
+
+          ))}
+         
         </div>
         <div className=" ">
           <div>
@@ -128,3 +97,20 @@ const RestaurantMenu = () => {
 };
 
 export default RestaurantMenu;
+
+
+  // commented here and created useRestaurant Hook
+
+  // const [restaurant, setRestaurant]= useState(null)
+
+  // const getRestaurantInfo = async () => {
+  //   const data = await fetch(
+  //   `https://www.swiggy.com/dapi/menu/v4/full?lat=28.3895327&lng=77.2857697&menuId=${id}`
+  //   );
+  //   const json = await data.json();
+  //   console.log(json);
+  //   setRestaurant(json.data)
+  // };
+  // useEffect(() => {
+  //   getRestaurantInfo();
+  // }, []);
