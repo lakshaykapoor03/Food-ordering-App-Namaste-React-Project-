@@ -38,6 +38,7 @@ const Card = ({
     </div>
   );
 };
+
 export const withPromotedLabel = (Card) => {
   return (props) => {
     return (

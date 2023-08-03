@@ -20,20 +20,21 @@ const {user, setUser}= useContext(UserContext)
   console.log("render");
   // console.log(restaurants);
 
-  useEffect(() => {
-    getRestaurants();
-  },[]);
+ 
 
   const getRestaurants = async () => {
     const data = await fetch(
       "https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.3895327&lng=77.2857697&page_type=DESKTOP_WEB_LISTING"
     );
     const json = await data.json();
-     console.log(json.data.cards[2].data.data.cards);
-    setFilteredRestaurants(json?.data?.cards[2]?.data?.data?.cards);
-    setAllRestaurants(json?.data?.cards[2]?.data?.data?.cards);
+     console.log(   json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+    setFilteredRestaurants(   json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+    setAllRestaurants(   json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
   };
-
+  
+  useEffect(() => {
+    getRestaurants();
+  },[]);
   
 const filterRestaurants = (restaurantList, searchText) => {
   const filterData = restaurantList.filter((r) =>
@@ -94,7 +95,7 @@ const filterRestaurants = (restaurantList, searchText) => {
           <h1>Oops..No restaurant matched your results!!</h1>
         ) : (
           filteredRestaurants.map((restaurant, idx) => (
-          <Link to={`restaurant/${restaurant.data.id}`} key={restaurant.data.id}>{restaurant.data.promoted? <RestaurantCardPromoted {...restaurant.data}/>:<Card  {...restaurant.data} />} 
+          <Link to={`restaurant/${restaurant.info.id}`} key={restaurant.info.id}>{restaurant.info.promoted? <RestaurantCardPromoted {...restaurant.info}/>:<Card  {...restaurant.info} />} 
           </Link>
           ))
         )}
