@@ -35,7 +35,7 @@ const RestaurantMenu = () => {
     return <Shimmer />;
   }
   return (
-    <div className="">
+    <div className="m-auto">
       <div className="flex justify-around">
         {/* <img
           width={"200px"}
@@ -51,17 +51,17 @@ const RestaurantMenu = () => {
         </div> */}
         {/* <h2>{restaurant.cuisines.join(",")}</h2> */}
       </div>
-      <h1 className="font-semibold text-4xl m-8">Menu</h1>
+      <h1 className="font-semibold text-4xl ml-36">Menu</h1>
 
       <div className="grid grid-cols-3 gap-4">
-        <div className="col-span-2 ">
+        <div className="col-span-2 ml-36">
           {" "}
           {restaurantItems.map((item, idx) => (
             <div key={idx}>
-              <h1>{item.card.card.title}</h1>
+              <h1 className="text-xl font-bold mb-10">{item.card.card.title}</h1>
               <ul>
     
-                  <div key={idx} className="grid grid-cols-2 gap-10 ml-12">
+                  <div key={idx} className="flex flex-col gap-10 ">
                 
                   <TitleMenuItems items={item.card.card.itemCards} />
                   </div>
@@ -72,31 +72,34 @@ const RestaurantMenu = () => {
           ))}
          
         </div>
-        <div className=" ">
-          <div>
-            <h1 className="font-bold text-3xl">
-              Cart items!!-{cartItems.length}
-            </h1>
-            <button
-              onClick={() => handleClearCart()}
-              className="m-2 bg-red-500  rounded p-1 text-white"
-            >
-              Clear Cart
-            </button>
-
-            <div className="flex flex-col gap-2 justify-evenly flex-wrap">
-              {cartItems.map((item, idx) => (
-                <FoodItem key={idx} {...item} />
-              ))}
-            </div>
-          </div>
-        </div>
+    
       </div>
     </div>
   );
 };
 
 export default RestaurantMenu;
+
+
+//    <div className="h-full">
+{/* <div>
+<h1 className="font-bold text-3xl">
+  Cart items!!-{cartItems.length}
+</h1>
+<button
+  onClick={() => handleClearCart()}
+  className="m-2 bg-red-500  rounded p-1 text-white"
+>
+  Clear Cart
+</button>
+
+<div className="flex flex-col gap-2 justify-evenly flex-wrap">
+  {cartItems.map((item, idx) => (
+    <FoodItem key={idx} {...item} />
+  ))}
+</div>
+</div>
+</div> */}
 
 
   // commented here and created useRestaurant Hook
