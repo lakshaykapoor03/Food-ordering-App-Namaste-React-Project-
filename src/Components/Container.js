@@ -24,7 +24,7 @@ const {user, setUser}= useContext(UserContext)
 
   const getRestaurants = async () => {
     const data = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.3895327&lng=77.2857697&page_type=DESKTOP_WEB_LISTING"
+      "https://corsproxy.io/?https://www.swiggy.com/dapi/restaurants/list/v5?lat=21.1702401&lng=72.83106070000001&page_type=DESKTOP_WEB_LISTING"
     );
     const json = await data.json();
      console.log(   json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
